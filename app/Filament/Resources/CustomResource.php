@@ -18,6 +18,11 @@ class CustomResource extends Resource
     protected static ?string $navigationGroup = 'Configurações';
     protected static ?string $modelLabel = 'Configurações';
 
+    public static function canAccess(): bool
+    {
+        return auth()->user()->admin === 1;
+    }
+
     public static function canCreate(): bool
     {
         return Custom::count() > 0 ? false : true;

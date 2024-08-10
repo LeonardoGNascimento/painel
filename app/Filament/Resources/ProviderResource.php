@@ -19,6 +19,11 @@ class ProviderResource extends Resource
     protected static ?string $navigationGroup = 'Jogos';
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    public static function canCreate(): bool
+    {
+        return auth()->user()->admin === 1;
+    }
+
     public static function form(Form $form): Form
     {
         return $form
