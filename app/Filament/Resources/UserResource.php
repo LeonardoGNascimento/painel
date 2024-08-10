@@ -27,26 +27,30 @@ class UserResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
+                    ->name('Nome')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('email')
                     ->email()
                     ->required()
                     ->maxLength(255),
-                Forms\Components\DateTimePicker::make('email_verified_at'),
                 Forms\Components\TextInput::make('password')
+                    ->name('Senha')
                     ->password()
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('games_played')
+                    ->name('Jogos jogados')
                     ->required()
                     ->maxLength(100)
                     ->default(0),
                 Forms\Components\TextInput::make('balance')
+                    ->name('Saldo')
                     ->required()
                     ->maxLength(100)
                     ->default(0),
                 Forms\Components\TextInput::make('active_currency')
+                    ->name('Moeda')
                     ->required()
                     ->maxLength(100)
                     ->default('USD'),
@@ -85,11 +89,6 @@ class UserResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
             ]);
     }
 
