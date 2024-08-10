@@ -10,9 +10,20 @@ class TestWidget extends BaseWidget
 {
     protected function getStats(): array
     {
+        $usuario = auth()->user();
+        $contagem = 0;
+
+        if ($usuario->admin === 1) {
+            $contagem = User::count();
+        }
+
+        if ($usuario->agente === 1) {
+            $contagem = User::where(['agente_id' => $usuario->id])->count();
+        }
+
         return [
             Stat::make('Total agentes', User::where(['agente' => 1])->count()),
-            Stat::make('Total de Usuários', User::count()),
+            Stat::make('Total de Usuários', $contagem),
         ];
     }
 }
