@@ -12,14 +12,8 @@ return new class extends Migration
             if (!Schema::hasColumn('users', 'active_currency')) {
                 $table->string('active_currency', 100)->after('password')->default('USD');
             }
-            if (!Schema::hasColumn('users', 'balance_usd')) {
-                $table->string('balance_usd', 100)->after('password')->default('0');
-            }
-            if (!Schema::hasColumn('users', 'balance_eur')) {
-                $table->string('balance_eur', 100)->after('password')->default('0');
-            }
-            if (!Schema::hasColumn('users', 'balance_cad')) {
-                $table->string('balance_cad', 100)->after('password')->default('0');
+            if (!Schema::hasColumn('users', 'balance')) {
+                $table->string('balance', 100)->after('password')->default('0');
             }
             if (!Schema::hasColumn('users', 'games_played')) {
                 $table->string('games_played', 100)->after('password')->default('0');

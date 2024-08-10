@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('customs', function (Blueprint $table) {
             $table->id();
             $table->string('primary');
+            $table->string('titulo');
+            $table->string('logo');
             $table->timestamps(); // Cria automaticamente os campos created_at e updated_at
         });
     }
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('custom');
+        Schema::dropIfExists('customs'); // Corrigido para 'customs'
     }
 };

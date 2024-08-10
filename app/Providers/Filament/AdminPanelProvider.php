@@ -4,6 +4,7 @@ namespace App\Providers\Filament;
 
 use App\Filament\Pages\Dashboard;
 use App\Models\Custom;
+use Exception;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -25,16 +26,28 @@ class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
+        $custom = null;
+
+        try {
+            $contagem = Custom::all();
+
+            if (count(Custom::all()) > 0) {
+                $custom = $contagem->first();
+            }
+        } catch (Exception $e) {
+        }
+
+
         return $panel
             ->default()
-            ->brandName(Custom::all()->first() ? Custom::all()->first()->titulo : 'Laravel')
-            ->brandLogo(Custom::all()->first() ? asset('storage/' . Custom::all()->first()->logo) : 'Laravel')
+            ->brandName($custom ? $custom->titulo : 'Laravel')
+            ->brandLogo($custom ? asset('storage/' . $custom->logo) : 'Laravel')
             ->id('admin')
             ->path('admin')
             ->login()
-            ->colors([
-                'primary' => Custom::all()->first() ? Color::{Custom::all()->first()->primary} : Color::Amber,
-            ])
+            // ->colors([
+            //     'primary' => Custom::all()->first() ? Color::{Custom::all()->first()->primary} : Color::Amber,
+            // ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([

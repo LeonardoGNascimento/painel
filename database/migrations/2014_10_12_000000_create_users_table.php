@@ -20,6 +20,9 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->bigInteger('player_id')->nullable()->default(null); // Adicionado campo player_id
+            $table->tinyInteger('admin');
+            $table->bigInteger('agente')->nullable();
+            $table->bigInteger('agente_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
