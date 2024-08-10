@@ -2,10 +2,11 @@
 
 namespace App\Filament\Pages;
 
+use App\Models\User;
 use Filament\Forms\Form;
 use Filament\Pages\Dashboard\Concerns\HasFiltersForm;
 use Filament\Tables\Columns\Layout\Panel;
-
+use Illuminate\Support\Facades\Auth;
 class Dashboard extends \Filament\Pages\Dashboard
 {
     use HasFiltersForm;

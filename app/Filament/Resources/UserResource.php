@@ -18,6 +18,9 @@ class UserResource extends Resource
     protected static ?string $model = User::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationLabel = 'Lista de Usuarios';
+    protected static ?string $modelLabel = 'Usuarios';
+    protected static ?string $navigationGroup = 'Usuarios';
 
     public static function form(Form $form): Form
     {
@@ -39,15 +42,7 @@ class UserResource extends Resource
                     ->required()
                     ->maxLength(100)
                     ->default(0),
-                Forms\Components\TextInput::make('balance_cad')
-                    ->required()
-                    ->maxLength(100)
-                    ->default(0),
-                Forms\Components\TextInput::make('balance_eur')
-                    ->required()
-                    ->maxLength(100)
-                    ->default(0),
-                Forms\Components\TextInput::make('balance_usd')
+                Forms\Components\TextInput::make('balance')
                     ->required()
                     ->maxLength(100)
                     ->default(0),
@@ -69,22 +64,13 @@ class UserResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('email_verified_at')
-                    ->dateTime()
-                    ->sortable(),
                 Tables\Columns\TextColumn::make('games_played')
+                    ->label('Total jogadas')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('balance_cad')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('balance_eur')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('balance_usd')
-                    ->searchable(),
+                Tables\Columns\TextColumn::make('balance')
+                    ->label('Saldo'),
                 Tables\Columns\TextColumn::make('active_currency')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('player_id')
-                    ->numeric()
-                    ->sortable(),
+                    ->searchable()->label('Moeda'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
