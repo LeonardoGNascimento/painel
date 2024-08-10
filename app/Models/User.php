@@ -21,6 +21,8 @@ class User extends Authenticatable
         'balance',
         'games_played',
         'player_id',
+        'admin',
+        'agente'
     ];
 
     protected $hidden = [

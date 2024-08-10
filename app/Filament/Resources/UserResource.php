@@ -57,36 +57,45 @@ class UserResource extends Resource
                 Forms\Components\TextInput::make('player_id')
                     ->numeric()
                     ->default(null),
+                Forms\Components\Toggle::make('agente')
+                    ->default(null),
+                Forms\Components\Toggle::make('admin')
+                    ->default(null),
             ]);
     }
 
     public static function table(Table $table): Table
     {
+        $columns = [
+            Tables\Columns\TextColumn::make('name')
+                ->searchable(),
+            Tables\Columns\TextColumn::make('email')
+                ->searchable(),
+            Tables\Columns\TextColumn::make('games_played')
+                ->label('Total jogadas')
+                ->searchable(),
+            Tables\Columns\TextColumn::make('balance')
+                ->label('Saldo')
+                ->money('BRL'),
+            // Tables\Columns\TextColumn::make('active_currency')
+            //     ->searchable()->label('Moeda'),
+            Tables\Columns\TextColumn::make('created_at')
+                ->dateTime()
+                ->sortable()
+                ->toggleable(isToggledHiddenByDefault: true),
+            Tables\Columns\TextColumn::make('updated_at')
+                ->dateTime()
+                ->sortable()
+                ->toggleable(isToggledHiddenByDefault: true),
+        ];
+
+        if (auth()->user()->admin === 1) {
+            $columns[] = Tables\Columns\ToggleColumn::make('agente');
+            $columns[] = Tables\Columns\ToggleColumn::make('admin');
+        }
+
         return $table
-            ->columns([
-                Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('email')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('games_played')
-                    ->label('Total jogadas')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('balance')
-                    ->label('Saldo'),
-                Tables\Columns\TextColumn::make('active_currency')
-                    ->searchable()->label('Moeda'),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-            ])
-            ->filters([
-                //
-            ])
+            ->columns($columns)
             ->actions([
                 Tables\Actions\EditAction::make(),
             ]);

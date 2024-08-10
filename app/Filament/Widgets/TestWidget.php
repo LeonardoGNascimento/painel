@@ -11,7 +11,7 @@ class TestWidget extends BaseWidget
     protected function getStats(): array
     {
         return [
-            Stat::make('Total agentes', User::where(['admin' => 1])->count()),
+            Stat::make('Total agentes', User::where(['agente' => 1])->count()),
             Stat::make('Total de Usuários', User::count()),
         ];
     }
