@@ -22,7 +22,8 @@ class User extends Authenticatable
         'games_played',
         'player_id',
         'admin',
-        'agente'
+        'agente',
+        'agente_id'
     ];
 
     protected $hidden = [

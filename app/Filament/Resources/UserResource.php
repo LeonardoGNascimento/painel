@@ -17,51 +17,61 @@ class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-s-users';
     protected static ?string $navigationLabel = 'Lista de Usuarios';
     protected static ?string $modelLabel = 'Usuarios';
     protected static ?string $navigationGroup = 'Usuarios';
 
     public static function form(Form $form): Form
     {
+        $campos = [
+            Forms\Components\TextInput::make('name')
+                ->name('Nome')
+                ->required()
+                ->maxLength(255),
+            Forms\Components\TextInput::make('email')
+                ->email()
+                ->required()
+                ->maxLength(255),
+            Forms\Components\TextInput::make('password')
+                ->name('Senha')
+                ->password()
+                ->required()
+                ->maxLength(255),
+            Forms\Components\TextInput::make('games_played')
+                ->name('Jogos jogados')
+                ->required()
+                ->maxLength(100)
+                ->default(0),
+            Forms\Components\TextInput::make('balance')
+                ->name('Saldo')
+                ->required()
+                ->maxLength(100)
+                ->default(0),
+            Forms\Components\TextInput::make('active_currency')
+                ->name('Moeda')
+                ->required()
+                ->maxLength(100)
+                ->default('USD'),
+            Forms\Components\TextInput::make('player_id')
+                ->numeric()
+                ->default(null),
+
+        ];
+
+        if (auth()->user()->admin === 1) {
+            $campos[] = Forms\Components\TextInput::make('agente_id')
+                ->numeric()
+                ->disabled(fn() => auth()->user()->agente === 1)
+                ->default(auth()->user()->agente === 1 ? auth()->user()->id : null);
+            $campos[] = Forms\Components\Toggle::make('admin')
+                ->default(null);
+            $campos[] = Forms\Components\Toggle::make('agente')
+                ->default(null);
+        }
+
         return $form
-            ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->name('Nome')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('email')
-                    ->email()
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('password')
-                    ->name('Senha')
-                    ->password()
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('games_played')
-                    ->name('Jogos jogados')
-                    ->required()
-                    ->maxLength(100)
-                    ->default(0),
-                Forms\Components\TextInput::make('balance')
-                    ->name('Saldo')
-                    ->required()
-                    ->maxLength(100)
-                    ->default(0),
-                Forms\Components\TextInput::make('active_currency')
-                    ->name('Moeda')
-                    ->required()
-                    ->maxLength(100)
-                    ->default('USD'),
-                Forms\Components\TextInput::make('player_id')
-                    ->numeric()
-                    ->default(null),
-                Forms\Components\Toggle::make('agente')
-                    ->default(null),
-                Forms\Components\Toggle::make('admin')
-                    ->default(null),
-            ]);
+            ->schema($campos);
     }
 
     public static function table(Table $table): Table
