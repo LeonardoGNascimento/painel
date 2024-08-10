@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('key');
             $table->text('value');
-            $table->timestamp('expiration')->nullable();
+            $table->string('expiration')->nullable();
             $table->timestamps(); // Cria automaticamente os campos created_at e updated_at
         });
     }

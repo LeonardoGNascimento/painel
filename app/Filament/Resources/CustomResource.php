@@ -33,6 +33,7 @@ class CustomResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Select::make('primary')
+                    ->name('Cor')
                     ->options([
                         "Slate" => "Slate",
                         "Gray" => "Gray",
@@ -61,7 +62,7 @@ class CustomResource extends Resource
                 Forms\Components\TextInput::make('titulo')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\FileUpload::make('logo'),
+                Forms\Components\FileUpload::make('logo')->required(),
             ]);
     }
 
