@@ -31,7 +31,7 @@ class AdminPanelProvider extends PanelProvider
         try {
             $contagem = Custom::all();
 
-            if (count(Custom::all()) > 0) {
+            if (count($contagem) > 0) {
                 $custom = $contagem->first();
             }
         } catch (Exception $e) {
@@ -45,9 +45,9 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
-            // ->colors([
-            //     'primary' => Custom::all()->first() ? Color::{Custom::all()->first()->primary} : Color::Amber,
-            // ])
+            ->colors([
+                'primary' => $custom ? Color::{$custom->primary} : Color::Amber,
+            ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
