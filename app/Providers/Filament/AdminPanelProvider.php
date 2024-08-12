@@ -76,7 +76,7 @@ class AdminPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
             ->plugins([
-                FilamentBackgroundsPlugin::make()->imageProvider(MyImages::make()->directory('images/'))
+                FilamentBackgroundsPlugin::make()->imageProvider(MyImages::make()->directory($custom->background ? 'storage/' . explode('/', $custom->background)[0] : ''))
             ]);
     }
 }

@@ -63,7 +63,7 @@ class CustomResource extends Resource
                     ->required()
                     ->maxLength(255),
                 Forms\Components\FileUpload::make('logo')->required(),
-                Forms\Components\FileUpload::make('background')->directory('')->required(),
+                Forms\Components\FileUpload::make('background')->directory(time())->required(),
             ]);
     }
 
@@ -72,6 +72,7 @@ class CustomResource extends Resource
         return $table
             ->columns([
                 ImageColumn::make('logo')->size(50)->label('Logo'),
+                ImageColumn::make('background')->size(50)->label('Background'),
                 Tables\Columns\TextColumn::make('primary')
                     ->label('Cor')
                     ->searchable(),

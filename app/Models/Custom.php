@@ -9,6 +9,7 @@ class Custom extends Model
     protected $fillable = [
         'primary',
         'titulo',
-        'logo'
+        'logo',
+        'background'
     ];
 }
