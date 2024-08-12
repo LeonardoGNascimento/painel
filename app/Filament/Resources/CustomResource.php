@@ -63,6 +63,7 @@ class CustomResource extends Resource
                     ->required()
                     ->maxLength(255),
                 Forms\Components\FileUpload::make('logo')->required(),
+                Forms\Components\FileUpload::make('background')->directory('')->required(),
             ]);
     }
 

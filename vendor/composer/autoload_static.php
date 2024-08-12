@@ -40,10 +40,10 @@ class ComposerStaticInit9136e06b5e36646e671a700a12f63620
         '9720327d09ed9a4ba00c9b5071b71c7d' => __DIR__ . '/..' . '/danharrin/date-format-converter/src/standards.php',
         '2ad94ea6f6f6013119e9abcf4e302a08' => __DIR__ . '/..' . '/filament/forms/src/helpers.php',
         'b69d5f1f95cd1ed438c038b6cbcc45b5' => __DIR__ . '/..' . '/filament/notifications/src/Testing/Autoload.php',
-        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
-        '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
         '89e9938b64b06cc502d7ceca69a380fe' => __DIR__ . '/..' . '/filament/filament/src/global_helpers.php',
         'ebb446bb6d02e998480945fbbb73dc64' => __DIR__ . '/..' . '/filament/filament/src/helpers.php',
+        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
+        '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
         'c72349b1fe8d0deeedd3a52e8aa814d8' => __DIR__ . '/..' . '/mockery/mockery/library/helpers.php',
         'ce9671a430e4846b44e1c68c7611f9f5' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery.php',
         'a1cfe24d14977df6878b9bf804af2d1c' => __DIR__ . '/..' . '/nunomaduro/collision/src/Adapters/Phpunit/Autoload.php',
@@ -102,6 +102,7 @@ class ComposerStaticInit9136e06b5e36646e671a700a12f63620
             'Symfony\\Component\\CssSelector\\' => 30,
             'Symfony\\Component\\Console\\' => 26,
             'Symfony\\Component\\Clock\\' => 24,
+            'Swis\\Filament\\Backgrounds\\' => 26,
             'Spatie\\TemporaryDirectory\\' => 26,
             'Spatie\\MediaLibrary\\' => 20,
             'Spatie\\LaravelPackageTools\\' => 27,
@@ -381,6 +382,10 @@ class ComposerStaticInit9136e06b5e36646e671a700a12f63620
         'Symfony\\Component\\Clock\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/clock',
+        ),
+        'Swis\\Filament\\Backgrounds\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/swisnl/filament-backgrounds/src',
         ),
         'Spatie\\TemporaryDirectory\\' => 
         array (
@@ -731,6 +736,7 @@ class ComposerStaticInit9136e06b5e36646e671a700a12f63620
         'AnourValar\\EloquentSerialize\\Grammars\\QueryBuilderGrammar' => __DIR__ . '/..' . '/anourvalar/eloquent-serialize/src/Grammars/QueryBuilderGrammar.php',
         'AnourValar\\EloquentSerialize\\Package' => __DIR__ . '/..' . '/anourvalar/eloquent-serialize/src/Package.php',
         'AnourValar\\EloquentSerialize\\Service' => __DIR__ . '/..' . '/anourvalar/eloquent-serialize/src/Service.php',
+        'App\\Filament\\Pages\\Auth\\Login' => __DIR__ . '/../..' . '/app/Filament/Pages/Auth/Login.php',
         'App\\Filament\\Pages\\Dashboard' => __DIR__ . '/../..' . '/app/Filament/Pages/Dashboard.php',
         'App\\Filament\\Resources\\CustomResource' => __DIR__ . '/../..' . '/app/Filament/Resources/CustomResource.php',
         'App\\Filament\\Resources\\CustomResource\\Pages\\ManageCustoms' => __DIR__ . '/../..' . '/app/Filament/Resources/CustomResource/Pages/ManageCustoms.php',
@@ -7634,6 +7640,13 @@ class ComposerStaticInit9136e06b5e36646e671a700a12f63620
         'Spatie\\TemporaryDirectory\\Exceptions\\PathAlreadyExists' => __DIR__ . '/..' . '/spatie/temporary-directory/src/Exceptions/PathAlreadyExists.php',
         'Spatie\\TemporaryDirectory\\TemporaryDirectory' => __DIR__ . '/..' . '/spatie/temporary-directory/src/TemporaryDirectory.php',
         'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
+        'Swis\\Filament\\Backgrounds\\Contracts\\ProvidesImages' => __DIR__ . '/..' . '/swisnl/filament-backgrounds/src/Contracts/ProvidesImages.php',
+        'Swis\\Filament\\Backgrounds\\FilamentBackgroundsPlugin' => __DIR__ . '/..' . '/swisnl/filament-backgrounds/src/FilamentBackgroundsPlugin.php',
+        'Swis\\Filament\\Backgrounds\\FilamentBackgroundsServiceProvider' => __DIR__ . '/..' . '/swisnl/filament-backgrounds/src/FilamentBackgroundsServiceProvider.php',
+        'Swis\\Filament\\Backgrounds\\Image' => __DIR__ . '/..' . '/swisnl/filament-backgrounds/src/Image.php',
+        'Swis\\Filament\\Backgrounds\\ImageProviders\\CuratedBySwis' => __DIR__ . '/..' . '/swisnl/filament-backgrounds/src/ImageProviders/CuratedBySwis.php',
+        'Swis\\Filament\\Backgrounds\\ImageProviders\\MyImages' => __DIR__ . '/..' . '/swisnl/filament-backgrounds/src/ImageProviders/MyImages.php',
+        'Swis\\Filament\\Backgrounds\\ImageProviders\\Triangles' => __DIR__ . '/..' . '/swisnl/filament-backgrounds/src/ImageProviders/Triangles.php',
         'Symfony\\Component\\Clock\\Clock' => __DIR__ . '/..' . '/symfony/clock/Clock.php',
         'Symfony\\Component\\Clock\\ClockAwareTrait' => __DIR__ . '/..' . '/symfony/clock/ClockAwareTrait.php',
         'Symfony\\Component\\Clock\\ClockInterface' => __DIR__ . '/..' . '/symfony/clock/ClockInterface.php',

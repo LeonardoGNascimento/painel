@@ -1,0 +1,29 @@
+.fi-simple-main {
+    margin: 0 !important;
+    height: 100vh;
+    border-radius: 0 !important;
+    align-items: center !important;
+    display: flex;
+    justify-content: center;
+}
+
+.fi-simple-main-ctn {
+    justify-content: end !important;
+}
+
+#link_criar_conta {
+    color: red;
+}
+
+.fi-simple-header {
+    align-items: start;
+}
+
+.fi-logo {
+    width: 5rem;
+    height: 5rem !important;
+}
+
+.fi-simple-page {
+    width: 80%;
+}
