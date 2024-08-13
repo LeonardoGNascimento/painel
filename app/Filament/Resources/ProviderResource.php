@@ -17,7 +17,8 @@ class ProviderResource extends Resource
 {
     protected static ?string $model = Provider::class;
     protected static ?string $navigationGroup = 'Jogos';
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-server';
+    protected static ?string $modelLabel = 'Provedores';
 
     public static function canCreate(): bool
     {

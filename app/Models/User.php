@@ -27,7 +27,6 @@ class User extends Authenticatable
     ];
 
     protected $hidden = [
-        'password',
         'remember_token',
     ];
 
@@ -96,5 +95,10 @@ class User extends Authenticatable
             Log::critical('Error on changeBalance() writing transactional history, it _SEEMS_ balance however was added to user but as no record now exists of this change please check player thoroughly. ' . $writeTransaction);
             return false;
         }
+    }
+
+    public function agenteResponsavel()
+    {
+        return $this->belongsTo(User::class, 'agente_id');
     }
 }

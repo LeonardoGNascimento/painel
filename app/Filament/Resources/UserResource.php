@@ -24,6 +24,12 @@ class UserResource extends Resource
 
     public static function form(Form $form): Form
     {
+        $agentes = [];
+
+        foreach (User::where(['agente' => 1])->get()->toArray() as $agente) {
+            $agentes[$agente['id']] = $agente['name'];
+        }
+
         $campos = [
             Forms\Components\TextInput::make('name')
                 ->name('Nome')
@@ -59,14 +65,17 @@ class UserResource extends Resource
 
         ];
 
-        if (auth()->user()->admin === 1) {
-            $campos[] = Forms\Components\TextInput::make('agente_id')
-                ->numeric()
-                ->disabled(fn() => auth()->user()->agente === 1)
-                ->default(auth()->user()->agente === 1 ? auth()->user()->id : null);
-            $campos[] = Forms\Components\Toggle::make('admin')
-                ->default(null);
+        if (auth()->user()->agente === 1 || auth()->user()->admin === 1) {
             $campos[] = Forms\Components\Toggle::make('agente')
+                ->default(null);
+            $campos[] = Forms\Components\Select::make('agente_id')
+                ->options($agentes)
+                ->disabled(fn() => auth()->user()->agente === 1 && auth()->user()->admin === 0)
+                ->default(auth()->user()->agente === 1 ? auth()->user()->id : null);
+        }
+
+        if (auth()->user()->admin === 1) {
+            $campos[] = Forms\Components\Toggle::make('admin')
                 ->default(null);
         }
 
@@ -81,14 +90,15 @@ class UserResource extends Resource
                 ->searchable(),
             Tables\Columns\TextColumn::make('email')
                 ->searchable(),
+            Tables\Columns\TextColumn::make('agenteResponsavel.email')
+                ->label('Agente responsável')
+                ->searchable(),
             Tables\Columns\TextColumn::make('games_played')
                 ->label('Total jogadas')
                 ->searchable(),
             Tables\Columns\TextColumn::make('balance')
                 ->label('Saldo')
                 ->money('BRL'),
-            // Tables\Columns\TextColumn::make('active_currency')
-            //     ->searchable()->label('Moeda'),
             Tables\Columns\TextColumn::make('created_at')
                 ->dateTime()
                 ->sortable()
@@ -99,8 +109,11 @@ class UserResource extends Resource
                 ->toggleable(isToggledHiddenByDefault: true),
         ];
 
-        if (auth()->user()->admin === 1) {
+        if (auth()->user()->agente === 1 || auth()->user()->admin === 1) {
             $columns[] = Tables\Columns\ToggleColumn::make('agente');
+        }
+
+        if (auth()->user()->admin === 1) {
             $columns[] = Tables\Columns\ToggleColumn::make('admin');
         }
 

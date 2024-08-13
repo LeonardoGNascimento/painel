@@ -1,0 +1,19 @@
+<?php
+
+namespace App\Filament\Resources\PlanoResource\Pages;
+
+use App\Filament\Resources\PlanoResource;
+use Filament\Actions;
+use Filament\Resources\Pages\ViewRecord;
+
+class ViewPlano extends ViewRecord
+{
+    protected static string $resource = PlanoResource::class;
+
+    protected function getHeaderActions(): array
+    {
+        return [
+            Actions\EditAction::make(),
+        ];
+    }
+}
